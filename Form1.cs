@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Resources;
 
 namespace Dijkstra
 {
@@ -16,6 +17,9 @@ namespace Dijkstra
         public Form1()
         {
             InitializeComponent();
+
+            Icon icon = new Icon("../../Resources/appicon.ico");
+            this.Icon = icon;
             g = new Grafo();
             g.Location = new Point(220, 20);
             NuovoVertice nv = new NuovoVertice();
