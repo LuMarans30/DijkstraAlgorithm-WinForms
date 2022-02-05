@@ -51,16 +51,18 @@ namespace Dijkstra
             listaAdiacenti = new List<Arco>();
             Abilita();
         }
+
         public Vertice(Vertice v):this(v.Nome)
         { 
         }
+
         public void Aggiungi(Arco arco)
         {
             int i = 0;
             for (; i < listaAdiacenti.Count && arco.Peso >= listaAdiacenti[i].Peso; i++) ;
             listaAdiacenti.Insert(i, arco);
-
         }
+
         public Arco Estrai()
         {
             Arco arco = null;
@@ -71,8 +73,8 @@ namespace Dijkstra
             }
 
             return arco;
-
         }
+
         protected override void OnPaintBackground(PaintEventArgs pevent)
         {
             ////base.OnPaintBackground(pevent);
@@ -80,11 +82,10 @@ namespace Dijkstra
             //Brush b = Brushes.White;
             //g.FillEllipse(b, 0, 0,45, 45);
         }
+
         private void Vertice_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-
             flag = true;
-
         }
 
         private void Vertice_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
@@ -100,8 +101,7 @@ namespace Dijkstra
                 DataObject dataogg = new DataObject(a);
                 a.DoDragDrop(dataogg, DragDropEffects.Move);
                 flag = false;
-                a.Disabilita();
-          
+                a.Disabilita();         
             }
 
         }

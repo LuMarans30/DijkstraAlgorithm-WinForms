@@ -12,6 +12,7 @@ namespace Dijkstra
         Vertice dest = null;
         int i = 0;
         List<Vertice> list = new List<Vertice>();
+        bool sorgFlag=false;
         Vertice sorg = null;
 
         public Form1()
@@ -24,6 +25,7 @@ namespace Dijkstra
             g.Location = new Point(220, 20);
             NuovoVertice nv = new NuovoVertice();
             Vertice v = new Vertice(char.ConvertFromUtf32(i + 65).ToString());
+            v.Click += V_Click;
             i++;
             panel1.Controls.Add(v);
             g.AggiungiVertice(v);
@@ -31,7 +33,7 @@ namespace Dijkstra
 
         }
 
-        private void nuovoArcoToolStripMenuItem_Click(object sender, EventArgs e)
+        /*private void nuovoArcoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //Nuovo Arco
             NuovoArco fmArco = new NuovoArco();
@@ -67,12 +69,11 @@ namespace Dijkstra
                 sorg = g.DaNome(fmArco.cmbPartenza.Text);
                 sorg.listaAdiacenti.Add(new Arco(dest, Convert.ToInt32(fmArco.txtPeso.Text)));
 
-
                 g.Refresh();
 
             }
 
-        }
+        }*/
 
         protected override void OnPaint(PaintEventArgs e)
         {
@@ -81,8 +82,6 @@ namespace Dijkstra
 
         private void sorgenteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
-
             Vertice sorgente = null;
             Vertice arrivo = null;
             FrmPercorsoMinimo fmPm = new FrmPercorsoMinimo();
@@ -122,7 +121,7 @@ namespace Dijkstra
                 arrivo.Text = s;
                 arrivo.TextAlign = ContentAlignment.MiddleLeft;
                 arrivo = arrivo.Predecessore;
-            } while (arrivo.GetHashCode() != sorgente.GetHashCode());
+            }while (arrivo.GetHashCode() != sorgente.GetHashCode());
 
             listBox1.Items.Insert(0, sorgente.Nome + " " + sorgente.Peso.ToString());
         }
@@ -138,10 +137,40 @@ namespace Dijkstra
             g.AggiungiVertice(v);
         }
 
+        private void aggiungiArco(object sender, EventArgs e)
+        {
+            NuovoArco fmArco = new NuovoArco();
+            foreach (Control c in g.Controls)
+            {
+
+                if (c is Postazione && c.Controls.Count > 0)
+                {
+                    Vertice vx = (Vertice)c.Controls[0];
+                    Postazione px = (Postazione)c;
+                    vx.Posx = px.i * 60;
+                    vx.Posy = px.j * 60;
+                }
+            }
+            if (fmArco.ShowDialog()==DialogResult.OK)
+            {
+                sorg.listaAdiacenti.Add(new Arco(dest, Convert.ToInt32(fmArco.txtPeso.Text)));
+                g.Refresh();
+            }
+        }
+
         private void V_Click(object sender, EventArgs e)
         {
-            
+            Vertice v = (Vertice)sender;
+            sorgFlag=!sorgFlag;
+            if (!sorgFlag)
+            {
+                dest = v;
+                aggiungiArco(this,e);
+            }
+            else
 
+                sorg = v;
         }
+
     }
 }

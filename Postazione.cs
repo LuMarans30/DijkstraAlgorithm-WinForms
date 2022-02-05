@@ -26,11 +26,7 @@ namespace Dijkstra
 
             this.AllowDrop = true;
             this.BackColor = Color.Transparent;
-
-            //	this.BackgroundImage=Image.FromFile("..\\..\\spiaggia60x60.jpg");
-
             this.Size = new System.Drawing.Size(60,60);
-
             this.DragDrop += new System.Windows.Forms.DragEventHandler(Postazione_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(Postazione_DragEnter);
          
@@ -38,18 +34,10 @@ namespace Dijkstra
         public Postazione(int i, int j)
             : this()
         {
-
             this.i =j ;
             this.j = i;
-
             //this.DoubleClick+=new EventHandler(Postazione_DoubleClick);
-
         }
-
-
-
-
-
 
         private void Postazione_DragDrop(object sender, System.Windows.Forms.DragEventArgs e)
         {
@@ -57,19 +45,12 @@ namespace Dijkstra
             {
                 Vertice vert = (Vertice)e.Data.GetData(typeof(Vertice));
                 e.Effect = DragDropEffects.Move;
-
-
                 // OnDragDrop(new DragEventArgs(e.Data,e.KeyState,e.X,e.Y,e.AllowedEffect,e.Effect));
             }
             else
                 e.Effect = DragDropEffects.None;
 
-
-
-
         }
-
-
 
         private void Postazione_DragEnter(object sender, System.Windows.Forms.DragEventArgs e)
         {
@@ -77,11 +58,9 @@ namespace Dijkstra
             if (e.Data.GetDataPresent(typeof(Vertice)))
             {
                 Vertice l3 = (Vertice)e.Data.GetData(typeof(Vertice));
-              l3.Location = new Point(0, 0);
+                l3.Location = new Point(0, 0);
 
                 this.Controls.Add(l3);
-               
-
             }
 
         }

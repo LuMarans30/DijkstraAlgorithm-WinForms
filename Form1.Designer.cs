@@ -28,10 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.grafoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nuovoArcoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.percorsoMinimoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sorgenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -44,28 +41,12 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.grafoToolStripMenuItem,
             this.percorsoMinimoToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1186, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // grafoToolStripMenuItem
-            // 
-            this.grafoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.nuovoArcoToolStripMenuItem});
-            this.grafoToolStripMenuItem.Name = "grafoToolStripMenuItem";
-            this.grafoToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.grafoToolStripMenuItem.Text = "Grafo";
-            // 
-            // nuovoArcoToolStripMenuItem
-            // 
-            this.nuovoArcoToolStripMenuItem.Name = "nuovoArcoToolStripMenuItem";
-            this.nuovoArcoToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
-            this.nuovoArcoToolStripMenuItem.Text = "Nuovo Arco";
-            this.nuovoArcoToolStripMenuItem.Click += new System.EventHandler(this.nuovoArcoToolStripMenuItem_Click);
             // 
             // percorsoMinimoToolStripMenuItem
             // 
@@ -140,9 +121,7 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem grafoToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ToolStripMenuItem nuovoArcoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem percorsoMinimoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sorgenteToolStripMenuItem;
         private System.Windows.Forms.ListBox listBox1;

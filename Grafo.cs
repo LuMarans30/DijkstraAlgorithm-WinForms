@@ -28,18 +28,18 @@ namespace Dijkstra
             //this.ColumnCount = 4;
             //this.Anchor = AnchorStyles.None;
             //this.Padding = new System.Windows.Forms.Padding(50);
-           // this.GrowStyle = TableLayoutPanelGrowStyle.FixedSize;
-           // this.Margin = new System.Windows.Forms.Padding(50);
+            // this.GrowStyle = TableLayoutPanelGrowStyle.FixedSize;
+            // this.Margin = new System.Windows.Forms.Padding(50);
             for (int i = 0; i < 10; i++)
                 for (int j = 0; j < 10; j++)
                 {
                     Postazione p = new Postazione(i, j);
-                    
+
                     p.Location = new Point(j * 60, i * 60);
-                //    p.ControlAdded += new ControlEventHandler(p_ControlAdded);
-                     
+                    //    p.ControlAdded += new ControlEventHandler(p_ControlAdded);
+
                     this.Controls.Add(p);
-                  
+
                 }
         }
         public void AggiungiVertice(Vertice v)
@@ -93,7 +93,7 @@ namespace Dijkstra
 
         public void AggiungiNodo(Vertice v)
         {
-            nodi.Add(v); 
+            nodi.Add(v);
             Controls.Add(v);
         }
 
@@ -110,21 +110,20 @@ namespace Dijkstra
                     {
                         for (int i = 0; i < v.listaAdiacenti.Count; i++)
                         {
-                            Brush b=Brushes.Blue;
+                            Brush b = Brushes.Blue;
                             Brush y = Brushes.RosyBrown;
-                            gr.DrawLine(new Pen(Color.Red, 2), new Point(v.Posx+30, v.Posy+30), new Point(v.listaAdiacenti[i].Destinazione.Posx+30, v.listaAdiacenti[i].Destinazione.Posy+30));
-                            gr.DrawString(v.Nome+"-->"+v.listaAdiacenti[i].Destinazione.Nome
-                            , new Font("Arial", 14F), b, new PointF((float)(v.Posx*2 + v.listaAdiacenti[i].Destinazione.Posx) /3.0F, (float)(v.Posy*2 + v.listaAdiacenti[i].Destinazione.Posy) / 3.0F));
-                            gr.DrawString(v.listaAdiacenti[i].Peso.ToString()
-                         , new Font("Arial", 14F), y, new PointF((float)(v.Posx * 2 + v.listaAdiacenti[i].Destinazione.Posx) / 3.0F+10F, (float)(v.Posy * 2 + v.listaAdiacenti[i].Destinazione.Posy) / 3.0F-15F));
+                            gr.DrawLine(new Pen(Color.Red, 2), new Point(v.Posx + 30, v.Posy + 30), new Point(v.listaAdiacenti[i].Destinazione.Posx + 30, v.listaAdiacenti[i].Destinazione.Posy + 30));
+                            gr.DrawString(v.listaAdiacenti[i].Peso.ToString(), new Font("Arial", 14F), y, new PointF((float)((v.Posx + v.listaAdiacenti[i].Destinazione.Posx) / 2), (float)(v.Posy + v.listaAdiacenti[i].Destinazione.Posy) / 2));
                         }
-                    }
+                    }                
+                    
                 }
             }
-                base.OnPaint(e);
-           
+            base.OnPaint(e);
         }
+                
+
+    }
 
       
-    }
 }
