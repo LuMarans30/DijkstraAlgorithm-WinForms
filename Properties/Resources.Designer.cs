@@ -59,5 +59,15 @@ namespace Dijkstra.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap aquamarine_circle {
+            get {
+                object obj = ResourceManager.GetObject("aquamarine-circle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

@@ -11,6 +11,7 @@ namespace Dijkstra
         Grafo g;
         Vertice dest = null;
         int i = 0;
+        string infinity = "∞";
         List<Vertice> list = new List<Vertice>();
         bool sorgFlag=false;
         Vertice sorg = null;
@@ -119,7 +120,7 @@ namespace Dijkstra
                 arrivo.ForeColor = Color.Blue;
                 string s = arrivo.Nome + "=" + arrivo.Peso.ToString();
                 arrivo.Text = s;
-                arrivo.TextAlign = ContentAlignment.MiddleLeft;
+                arrivo.lblEtichetta.TextAlign = ContentAlignment.MiddleLeft;
                 arrivo = arrivo.Predecessore;
             }while (arrivo.GetHashCode() != sorgente.GetHashCode());
 
@@ -130,6 +131,7 @@ namespace Dijkstra
         private void panel1_MouseHover(object sender, EventArgs e)
         {
             NuovoVertice nv = new NuovoVertice();
+            //Vertice v = new Vertice(char.ConvertFromUtf32(i + 65).ToString());
             Vertice v = new Vertice(char.ConvertFromUtf32(i + 65).ToString());
             v.Click += V_Click;
             i++;
@@ -168,7 +170,6 @@ namespace Dijkstra
                 aggiungiArco(this,e);
             }
             else
-
                 sorg = v;
         }
 

@@ -7,9 +7,15 @@ using System.Windows.Forms;
 
 namespace Dijkstra
 {
-    class Vertice : Label
+    class Vertice : FlowLayoutPanel 
     {
-       
+
+        public Label lblEtichetta = new Label();
+        public Label lblPeso = new Label();
+        public event MouseEventHandler MouseGiu;
+        public event MouseEventHandler MouseSu;
+        public event MouseEventHandler MouseMuovi;
+        public event EventHandler MouseClicca;
 
         public int Peso
         {
@@ -18,8 +24,11 @@ namespace Dijkstra
         }
 
         public int Posx{get;set;}
+
         public int Posy { get; set; }
+
         string nome;
+
         public string Nome
         {
             get
@@ -31,29 +40,104 @@ namespace Dijkstra
                 nome = value;
             }
         }
-         public bool Visitato { get; set; }
-         bool flag = false;
+
+        public bool Visitato { get; set; }
+        bool flag = false;
         public List<Arco> listaAdiacenti;
         public Vertice Predecessore { get; set; }
+
         public Vertice(string nome)
         {
             Predecessore = null;
             this.Peso = int.MaxValue;
             this.nome = nome;
             this.Visitato = false;
-            this.BackColor= Color.White;
-            this.ForeColor = Color.Red;
-            this.Text = nome;
-            this.Font = new Font("Courier", 16);
-            this.TextAlign = ContentAlignment.MiddleCenter;
-            this.Size = new Size(45, 45);
-            this.Margin = new Padding(30);
             listaAdiacenti = new List<Arco>();
+            BackColor = System.Drawing.Color.White;
+            BackgroundImage = global::Dijkstra.Properties.Resources.aquamarine_circle;
+            this.BackColor = System.Drawing.Color.Transparent;
+            BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            Margin = new System.Windows.Forms.Padding(0);
+            Size = new System.Drawing.Size(60, 60);
+
+            this.Click += OnClick;
+            this.MouseGiu += Vertice_MouseDown;
+            this.MouseSu += Vertice_MouseUp;
+            this.MouseMuovi += Vertice_MouseMove;
+            
+            // 
+            // lblEtichetta
+            // 
+            //this.lblEtichetta.BackColor = System.Drawing.Color.Transparent;
+            this.lblEtichetta.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEtichetta.Location = new System.Drawing.Point(0, 0);
+            this.lblEtichetta.Text = nome;
+            this.lblEtichetta.Margin = new System.Windows.Forms.Padding(0);
+            this.lblEtichetta.Name = "lblEtichetta";
+            this.lblEtichetta.Size = new System.Drawing.Size(40, 55);
+            this.lblEtichetta.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblEtichetta.MouseDown += lblMouseDown;
+            this.lblEtichetta.MouseUp += lblMouseUp;
+            this.lblEtichetta.MouseMove += lblMouseMove;
+            this.lblEtichetta.Click += lblClick;
+            // 
+            // lblPeso
+            // 
+            //this.lblPeso.BackColor = System.Drawing.Color.Transparent;
+            this.lblPeso.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPeso.Location = new System.Drawing.Point(40, 0);
+            this.lblPeso.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPeso.Name = "lblPeso";
+            this.lblPeso.Size = new System.Drawing.Size(20, 20);
+            this.lblPeso.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.lblPeso.MouseDown += lblMouseDown;
+            this.lblPeso.MouseUp += lblMouseUp;
+            this.lblPeso.MouseMove += lblMouseMove;
+            this.lblPeso.Click += lblClick;
+
             Abilita();
+            Controls.Add(this.lblEtichetta);
+            Controls.Add(this.lblPeso);
+
         }
 
-        public Vertice(Vertice v):this(v.Nome)
-        { 
+        private void OnClick(object sender, EventArgs e)
+        {
+            MouseClicca?.Invoke(this, e);
+        }
+
+        protected virtual void OnMouseGiu(MouseEventArgs e)
+        {
+            MouseGiu?.Invoke(this, e);
+        }
+
+        protected virtual void OnMouseSu(MouseEventArgs e)
+        {
+            MouseSu?.Invoke(this, e);
+        }
+
+        protected virtual void OnMouseMuovi(MouseEventArgs e)
+        {
+            MouseMuovi?.Invoke(this, e);
+        }
+
+        public void lblMouseDown(object sender, MouseEventArgs e)
+        {
+            OnMouseGiu(e);
+        }
+        public void lblMouseUp(object sender, MouseEventArgs e)
+        {
+            OnMouseSu(e);
+        }
+
+        public void lblMouseMove(object sender, MouseEventArgs e)
+        {
+            OnMouseMuovi(e);
+        }
+
+        public void lblClick(object sender, EventArgs e)
+        {
+            OnClick(e);
         }
 
         public void Aggiungi(Arco arco)
@@ -73,14 +157,6 @@ namespace Dijkstra
             }
 
             return arco;
-        }
-
-        protected override void OnPaintBackground(PaintEventArgs pevent)
-        {
-            ////base.OnPaintBackground(pevent);
-            //Graphics g = pevent.Graphics;
-            //Brush b = Brushes.White;
-            //g.FillEllipse(b, 0, 0,45, 45);
         }
 
         private void Vertice_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
@@ -106,8 +182,6 @@ namespace Dijkstra
 
         }
 
-     
-
         protected override void OnPaint(PaintEventArgs e)
         {
             Graphics g =e.Graphics;
@@ -123,20 +197,17 @@ namespace Dijkstra
             this.MouseMove -= new System.Windows.Forms.MouseEventHandler(Vertice_MouseMove);
             this.MouseDown -= new System.Windows.Forms.MouseEventHandler(Vertice_MouseDown);
             this.MouseUp -= new System.Windows.Forms.MouseEventHandler(Vertice_MouseUp);
-           // this.Click += new EventHandler(Vertice_Click);
         }
+
         public void Abilita()
         {
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(Vertice_MouseMove);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(Vertice_MouseDown);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(Vertice_MouseUp);
-         //   this.Click += new EventHandler(Vertice_Click);
         }
 
-        public void Vertice_MouseClick(object sender, MouseEventArgs e)
-        {
 
-        }
+        
 
 
     }

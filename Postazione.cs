@@ -68,12 +68,8 @@ namespace Dijkstra
         private void InitializeComponent()
         {
             this.SuspendLayout();
-            // 
-            // Postazione
-            // 
             this.BackColor = System.Drawing.Color.Transparent;
             this.ResumeLayout(false);
-
         }
     }
 }
