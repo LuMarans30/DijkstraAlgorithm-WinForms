@@ -10,8 +10,6 @@ namespace Dijkstra
 {
     class Grafo : Panel
     {
-        //public List<Vertice> vertici;
-        //public List<Vertice> frontiera;
         public List<Vertice> nonVisitati;
         public List<Vertice> visitati;
         public Vertice Attivo { get; set; }
@@ -19,26 +17,16 @@ namespace Dijkstra
         public Grafo()
         {
             nonVisitati = new List<Vertice>();
-            //frontiera = new List<Vertice>();
             visitati = new List<Vertice>();
-            //vertici = new List<Vertice>();
             this.BorderStyle = BorderStyle.Fixed3D;
             this.BackColor = Color.White;
             this.Size = new System.Drawing.Size(1500, 900);
-
-            //this.RowCount = 4;
-            //this.ColumnCount = 4;
-            //this.Anchor = AnchorStyles.None;
-            //this.Padding = new System.Windows.Forms.Padding(50);
-            // this.GrowStyle = TableLayoutPanelGrowStyle.FixedSize;
-            // this.Margin = new System.Windows.Forms.Padding(50);
             for (int i = 0; i < 15; i++)
             for (int j = 0; j < 25; j++)
             {
                 Postazione p = new Postazione(i, j);
 
                 p.Location = new Point(j * 60, i * 60);
-                //    p.ControlAdded += new ControlEventHandler(p_ControlAdded);
 
                 this.Controls.Add(p);
             }
@@ -55,19 +43,6 @@ namespace Dijkstra
             nonVisitati.Remove(v);
             visitati.Add(v);
 
-        }
-
-        public void Visita()
-        {
-            Attivo = visitati.ElementAt(0);
-            if (!Attivo.Visitato)
-            {
-                Attivo.Visitato = true;
-
-                visitati.Add(Attivo);
-            }
-
-            visitati.RemoveAt(0);
         }
 
         public void Relax(Arco arco)
@@ -88,19 +63,6 @@ namespace Dijkstra
                         select vertice;
             return query.First();
         }
-        
-
-    /*  public void InizializzaSorgenteSingola(Vertice v)
-      {
-          v.Peso = 0;
-          SpostaVisitati(v);
-      }
-
-      public void AggiungiNodo(Vertice v)
-      {
-          vertici.Add(v);
-          Controls.Add(v);
-      }*/
 
         protected override void OnPaint(PaintEventArgs e)
         {

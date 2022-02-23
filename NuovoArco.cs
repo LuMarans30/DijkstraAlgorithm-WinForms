@@ -15,5 +15,13 @@ namespace Dijkstra
         {
             InitializeComponent();
         }
+
+        private void txtPeso_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                this.DialogResult = DialogResult.OK;
+            }
+        }
     }
 }

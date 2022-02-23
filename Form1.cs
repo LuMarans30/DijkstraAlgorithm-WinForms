@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using System.Resources;
 
@@ -8,10 +9,10 @@ namespace Dijkstra
 {
     public partial class Form1 : Form
     {
-        private Grafo g;// grafoIniziale;
+        private Grafo g;
         Vertice dest = null;
         int i = 0;
-        //List<Vertice> list = new List<Vertice>();
+        List<Vertice> vertici = new List<Vertice>();
         bool sorgFlag=false;
         Vertice sorg = null;
 
@@ -31,48 +32,6 @@ namespace Dijkstra
             Controls.Add(g);
 
         }
-
-        /*private void nuovoArcoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //Nuovo Arco
-            NuovoArco fmArco = new NuovoArco();
-            // listaNodi = new List<Vertice>();
-            foreach (Control c in g.Controls)
-            {
-
-                if (c is Postazione && c.Controls.Count > 0)
-                {
-                    Vertice vx = (Vertice)c.Controls[0];
-                    Postazione px = (Postazione)c;
-                    vx.Posx = px.i * 60;
-                    vx.Posy = px.j * 60;
-                    fmArco.cmbPartenza.Items.Add(vx.Nome);
-                    fmArco.cmbArrivo.Items.Add(vx.Nome);
-                    // listaNodi.Add(vx);
-                }
-            }
-            fmArco.cmbPartenza.Text = fmArco.cmbPartenza.Items[0].ToString();
-            fmArco.cmbArrivo.Text = fmArco.cmbArrivo.Items[0].ToString();
-            if (fmArco.ShowDialog() == DialogResult.OK)
-            {
-
-                //for (int i = 0; i < g.nonVisitati.Count; i++)
-                //{
-                //    if (listaNodi[i].Nome == fmArco.cmbArrivo.Text)
-                //        dest = listaNodi[i];
-                //    if (listaNodi[i].Nome == fmArco.cmbPartenza.Text)
-                //        sorg = listaNodi[i];
-
-                //}
-                dest = g.DaNome(fmArco.cmbArrivo.Text);
-                sorg = g.DaNome(fmArco.cmbPartenza.Text);
-                sorg.listaAdiacenti.Add(new Arco(dest, Convert.ToInt32(fmArco.txtPeso.Text)));
-
-                g.Refresh();
-
-            }
-
-        }*/
 
         protected override void OnPaint(PaintEventArgs e)
         {
@@ -104,7 +63,8 @@ namespace Dijkstra
                 Console.WriteLine("Adiacenti al vertice attivo: ");
                 foreach (Arco a in g.Attivo.listaAdiacenti)
                 {
-                    Console.WriteLine("Arco adiacente, Peso: " + a.Peso + " ; Nome Destinazione: " + a.Destinazione.Nome + " ; Peso destinazione: " + a.Destinazione.Peso);
+                    Console.WriteLine("Arco adiacente, Peso: " + a.Peso + " ; Nome Destinazione: " +
+                                      a.Destinazione.Nome + " ; Peso destinazione: " + a.Destinazione.Peso);
                 }
 
                 g.SpostaVisitati(sorgente);
@@ -116,26 +76,33 @@ namespace Dijkstra
                     Arco arco = null;
                     //g.nonVisitati.Sort();
 
-                    Console.WriteLine("Num. non visitati --> " + g.nonVisitati.Count + " ; Num. visitati --> " + g.visitati.Count);
+                    Console.WriteLine("Num. non visitati --> " + g.nonVisitati.Count + " ; Num. visitati --> " +
+                                      g.visitati.Count);
 
                     while ((arco = g.Attivo.Estrai()) != null)
                     {
-                        Console.WriteLine(" PRIMA RELAX: estrai nuovo arco, Nome destinazione: " + arco.Destinazione.Nome + " ; Peso: " + arco.Peso + " ; Peso nodo di destinazione: " + arco.Destinazione.Peso);
-                        
+                        Console.WriteLine(" PRIMA RELAX: estrai nuovo arco, Nome destinazione: " +
+                                          arco.Destinazione.Nome + " ; Peso: " + arco.Peso +
+                                          " ; Peso nodo di destinazione: " + arco.Destinazione.Peso);
+
                         g.Relax(arco);
 
-                        Console.WriteLine("DOPO RELAX: estrai nuovo arco, Nome destinazione: " + arco.Destinazione.Nome + " ; Peso: " + arco.Peso + " ; Peso nodo di destinazione: " + arco.Destinazione.Peso);
+                        Console.WriteLine("DOPO RELAX: estrai nuovo arco, Nome destinazione: " +
+                                          arco.Destinazione.Nome + " ; Peso: " + arco.Peso +
+                                          " ; Peso nodo di destinazione: " + arco.Destinazione.Peso);
                     }
 
                     g.nonVisitati.Sort();
                     g.Attivo = g.nonVisitati[0];
 
 
-                    Console.WriteLine("vertice attivo, con peso minore, Nome: " + g.Attivo.Nome + " ; Peso: " + g.Attivo.Peso );
+                    Console.WriteLine("vertice attivo, con peso minore, Nome: " + g.Attivo.Nome + " ; Peso: " +
+                                      g.Attivo.Peso);
                     Console.WriteLine("Adiacenti al vertice attivo: ");
                     foreach (Arco a in g.Attivo.listaAdiacenti)
                     {
-                        Console.WriteLine("Arco adiacente, Peso: " + a.Peso + " ; Nome Destinazione: " + a.Destinazione.Nome + " ; Peso nodo di destinazione: " + a.Destinazione.Peso);
+                        Console.WriteLine("Arco adiacente, Peso: " + a.Peso + " ; Nome Destinazione: " +
+                                          a.Destinazione.Nome + " ; Peso nodo di destinazione: " + a.Destinazione.Peso);
                     }
 
                     g.SpostaVisitati(g.Attivo);
@@ -150,32 +117,11 @@ namespace Dijkstra
                 {
                     Console.WriteLine("Nome: " + v.Nome + " ; Peso: " + v.Peso);
                 }
-                //g.InizializzaSorgenteSingola(sorgente);
-                /*while (g.frontiera.Count > 0)
-                {
-                    g.Visita();
 
-                    for (Arco arco = null; (arco = g.Attivo.Estrai()) != null; g.Relax(arco), g.SpostaFrontiera(arco.Destinazione)) ;
-                }*/
+
+                visualizzaGrafiToolStripMenuItem.Enabled = true;
+                percorsoMinimoToolStripMenuItem.Enabled = false;
             }
-
-            
-
-            
-            /*
-            do
-            {
-                listBox1.Items.Insert(0, arrivo.Nome + " " + arrivo.Peso.ToString());
-                arrivo.BackColor = Color.DarkBlue;
-                arrivo.Font = new Font("Arial", 10F);
-                arrivo.ForeColor = Color.Blue;
-                string s = arrivo.Nome + "=" + arrivo.Peso.ToString();
-                arrivo.Text = s;
-                arrivo.lblEtichetta.TextAlign = ContentAlignment.MiddleLeft;
-                arrivo = arrivo.Predecessore;
-            }while (arrivo.GetHashCode() != sorgente.GetHashCode());
-
-            listBox1.Items.Insert(0, sorgente.Nome + " " + sorgente.Peso.ToString());*/
         }
 
 
@@ -229,35 +175,34 @@ namespace Dijkstra
         {
             VsGrafi frameGrafi = new VsGrafi();
 
-            foreach (Vertice v in g.visitati)
-            {
-                frameGrafi.cmbDestinazione.Items.Add(v.ToString());
-            }
+            vertici = g.nonVisitati.Concat(g.visitati).ToList();
 
             foreach (Vertice v in g.visitati)
             {
                 string[] riga = { v.Nome, v.Peso.ToString() };
                 frameGrafi.dataGrafo.Rows.Add(riga);
-                frameGrafi.dataGrafo.Update();
-                frameGrafi.dataGrafo.Refresh();
             }
 
-            if (frameGrafi.ShowDialog() == DialogResult.OK)
+            int height = frameGrafi.dataGrafo.Location.Y + frameGrafi.dataGrafo.ColumnHeadersHeight;
+            foreach (DataGridViewRow dr in frameGrafi.dataGrafo.Rows)
             {
-                Vertice vertice = null;
+                height += dr.Height; // Row height.
+            }
+            frameGrafi.dataGrafo.Height = height;
 
-                foreach (Vertice v in g.visitati)
-                {
-                    if(v.Nome==frameGrafi.cmbDestinazione.SelectedItem.ToString())
-                        vertice = v;
-                }
+            frameGrafi.dataGrafo.Update();
+            frameGrafi.dataGrafo.Refresh();
 
-                vertice.BackgroundImage = Properties.Resources.red_circle;
-
-                
+            foreach (Vertice v in vertici)
+            {
+                v.lblPeso.Text = v.Peso.ToString();
             }
 
-            //g.Refresh();
+            if (DialogResult.OK == frameGrafi.ShowDialog())
+            {
+
+
+            }
         }
     }
 }
