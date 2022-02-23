@@ -39,7 +39,7 @@
             this.button3.Location = new System.Drawing.Point(232, 57);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(98, 39);
-            this.button3.TabIndex = 6;
+            this.button3.TabIndex = 2;
             this.button3.Text = "OK";
             this.button3.UseVisualStyleBackColor = true;
             // 
@@ -59,7 +59,8 @@
             this.txtPeso.Location = new System.Drawing.Point(126, 62);
             this.txtPeso.Name = "txtPeso";
             this.txtPeso.Size = new System.Drawing.Size(100, 29);
-            this.txtPeso.TabIndex = 12;
+            this.txtPeso.TabIndex = 1;
+            this.txtPeso.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPeso_KeyPress);
             // 
             // NuovoArco
             // 
