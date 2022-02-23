@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Dijkstra
 {
-    class Vertice : FlowLayoutPanel 
+    class Vertice : FlowLayoutPanel, IComparable<Vertice>
     {
 
         public Label lblEtichetta = new Label();
@@ -16,6 +16,8 @@ namespace Dijkstra
         public event MouseEventHandler MouseSu;
         public event MouseEventHandler MouseMuovi;
         public event EventHandler MouseClicca;
+        public List<Arco> listaAdiacenti;
+        public static string INFINITY = "∞";
 
         public int Peso
         {
@@ -43,22 +45,22 @@ namespace Dijkstra
 
         public bool Visitato { get; set; }
         bool flag = false;
-        public List<Arco> listaAdiacenti;
         public Vertice Predecessore { get; set; }
 
         public Vertice(string nome)
         {
             Predecessore = null;
             this.Peso = int.MaxValue;
+            //this.lblPeso.Text = INFINITY;
             this.nome = nome;
             this.Visitato = false;
             listaAdiacenti = new List<Arco>();
-            BackColor = System.Drawing.Color.White;
-            BackgroundImage = global::Dijkstra.Properties.Resources.aquamarine_circle;
-            this.BackColor = System.Drawing.Color.Transparent;
-            BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            Margin = new System.Windows.Forms.Padding(0);
-            Size = new System.Drawing.Size(60, 60);
+            BackColor = Color.White;
+            BackgroundImage = Properties.Resources.aquamarine_circle;
+            this.BackColor = Color.Transparent;
+            BackgroundImageLayout = ImageLayout.None;
+            Margin = new Padding(0);
+            Size = new Size(60, 60);
 
             this.Click += OnClick;
             this.MouseGiu += Vertice_MouseDown;
@@ -84,12 +86,12 @@ namespace Dijkstra
             // lblPeso
             // 
             //this.lblPeso.BackColor = System.Drawing.Color.Transparent;
-            this.lblPeso.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPeso.Location = new System.Drawing.Point(40, 0);
-            this.lblPeso.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPeso.Font = new Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPeso.Location = new Point(40, 0);
+            this.lblPeso.Margin = new Padding(0);
             this.lblPeso.Name = "lblPeso";
-            this.lblPeso.Size = new System.Drawing.Size(20, 20);
-            this.lblPeso.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.lblPeso.Size = new Size(20, 20);
+            this.lblPeso.TextAlign = ContentAlignment.BottomLeft;
             this.lblPeso.MouseDown += lblMouseDown;
             this.lblPeso.MouseUp += lblMouseUp;
             this.lblPeso.MouseMove += lblMouseMove;
@@ -140,12 +142,16 @@ namespace Dijkstra
             OnClick(e);
         }
 
-        public void Aggiungi(Arco arco)
+        /*public void Aggiungi(Arco arco)
         {
+            Console.WriteLine("AGGIUNGI");
             int i = 0;
-            for (; i < listaAdiacenti.Count && arco.Peso >= listaAdiacenti[i].Peso; i++) ;
+            for (; i < listaAdiacenti.Count && arco.Peso >= listaAdiacenti[i].Peso; i++);
             listaAdiacenti.Insert(i, arco);
-        }
+            Arco arco2 = new Arco(this, this.Peso);
+            for (i=0; i < arco2.Destinazione.listaAdiacenti.Count && arco2.Peso >= arco2.Destinazione.listaAdiacenti[i].Peso; i++) ;
+            arco2.Destinazione.listaAdiacenti.Insert(i, arco2);
+        }*/
 
         public Arco Estrai()
         {
@@ -185,9 +191,9 @@ namespace Dijkstra
         protected override void OnPaint(PaintEventArgs e)
         {
             Graphics g =e.Graphics;
-            Brush b1 = Brushes.White;
-            g.FillRectangle(b1, 0, 0, 45, 45);
-            Brush b = Brushes.Aquamarine;
+            //Brush b1 = Brushes.White;
+            //g.FillRectangle(b1, 0, 0, 45, 45);
+            Brush b = Brushes.Transparent;
             g.FillEllipse(b,0, 0, 45, 45);
             base.OnPaint(e);
         }
@@ -206,9 +212,20 @@ namespace Dijkstra
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(Vertice_MouseUp);
         }
 
+        public int CompareTo(Vertice v)
+        {
+            if (v.Peso == this.Peso)
+                return 0;
 
-        
+            if (v.Peso > this.Peso)
+                return -1;
 
+            return 1;
+        }
 
+        public override string ToString()
+        {
+            return this.Nome;
+        }
     }
 }

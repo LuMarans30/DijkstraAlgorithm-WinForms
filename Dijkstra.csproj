@@ -99,6 +99,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="VsGrafi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VsGrafi.Designer.cs">
+      <DependentUpon>VsGrafi.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -120,15 +131,25 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
+    <EmbeddedResource Include="VsGrafi.resx">
+      <DependentUpon>VsGrafi.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="Properties\DataSources\Arco.datasource" />
+    <None Include="Properties\DataSources\Dijkstra.Properties.Resources.datasource" />
+    <None Include="Properties\DataSources\Dijkstra.Properties.Settings.datasource" />
+    <None Include="Properties\DataSources\Form1.datasource" />
+    <None Include="Properties\DataSources\FrmPercorsoMinimo.datasource" />
+    <None Include="Properties\DataSources\Grafo.datasource" />
+    <None Include="Properties\DataSources\NuovoArco.datasource" />
+    <None Include="Properties\DataSources\NuovoVertice.datasource" />
+    <None Include="Properties\DataSources\Postazione.datasource" />
+    <None Include="Properties\DataSources\Program.datasource" />
+    <None Include="Properties\DataSources\Vertice.datasource" />
+    <None Include="Properties\DataSources\VsGrafi.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -145,6 +166,8 @@
   <ItemGroup>
     <Content Include="appicon.ico" />
     <Content Include="Resources\appicon.ico" />
+    <Content Include="Resources\yellow-circle.png" />
+    <None Include="Resources\red-circle.png" />
     <None Include="Resources\aquamarine-circle.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

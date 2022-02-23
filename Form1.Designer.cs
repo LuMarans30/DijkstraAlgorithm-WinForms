@@ -31,20 +31,21 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.percorsoMinimoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sorgenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.visualizzaGrafiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.percorsoMinimoToolStripMenuItem});
+            this.percorsoMinimoToolStripMenuItem,
+            this.visualizzaGrafiToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1186, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 2, 0, 20);
+            this.menuStrip1.Size = new System.Drawing.Size(1186, 41);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -59,27 +60,27 @@
             // sorgenteToolStripMenuItem
             // 
             this.sorgenteToolStripMenuItem.Name = "sorgenteToolStripMenuItem";
-            this.sorgenteToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
-            this.sorgenteToolStripMenuItem.Text = "Imposta Sorgente e Destinazione";
+            this.sorgenteToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.sorgenteToolStripMenuItem.Text = "Imposta Sorgente";
             this.sorgenteToolStripMenuItem.Click += new System.EventHandler(this.sorgenteToolStripMenuItem_Click);
+            // 
+            // visualizzaGrafiToolStripMenuItem
+            // 
+            this.visualizzaGrafiToolStripMenuItem.Name = "visualizzaGrafiToolStripMenuItem";
+            this.visualizzaGrafiToolStripMenuItem.Size = new System.Drawing.Size(96, 20);
+            this.visualizzaGrafiToolStripMenuItem.Text = "Visualizza grafi";
+            this.visualizzaGrafiToolStripMenuItem.Click += new System.EventHandler(this.visualizzaGrafiToolStripMenuItem_Click);
             // 
             // panel1
             // 
             this.panel1.AllowDrop = true;
-            this.panel1.BackColor = System.Drawing.Color.Aquamarine;
+            this.panel1.BackColor = System.Drawing.SystemColors.Control;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Location = new System.Drawing.Point(13, 132);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(45, 45);
+            this.panel1.Size = new System.Drawing.Size(60, 60);
             this.panel1.TabIndex = 2;
             this.panel1.MouseHover += new System.EventHandler(this.panel1_MouseHover);
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(13, 217);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(119, 186);
-            this.listBox1.TabIndex = 3;
             // 
             // label1
             // 
@@ -89,28 +90,20 @@
             this.label1.Size = new System.Drawing.Size(0, 13);
             this.label1.TabIndex = 4;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 198);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(85, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Percorso Minimo";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1186, 591);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Algoritmo di Dijkstra";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -124,9 +117,8 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStripMenuItem percorsoMinimoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sorgenteToolStripMenuItem;
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ToolStripMenuItem visualizzaGrafiToolStripMenuItem;
     }
 }
 

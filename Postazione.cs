@@ -10,16 +10,11 @@ using System.Runtime.Serialization;
 
 namespace Dijkstra
 {
-    /// <summary>
-    /// Descrizione di riepilogo per Postazione.
-    /// </summary>
-    /// 
-
     public class Postazione : System.Windows.Forms.Panel
     {
 
         public int i { get; set; }
-        public int j{get;set;}
+        public int j {get;set;}
 
         public Postazione()
         {
@@ -36,7 +31,6 @@ namespace Dijkstra
         {
             this.i =j ;
             this.j = i;
-            //this.DoubleClick+=new EventHandler(Postazione_DoubleClick);
         }
 
         private void Postazione_DragDrop(object sender, System.Windows.Forms.DragEventArgs e)
@@ -45,7 +39,6 @@ namespace Dijkstra
             {
                 Vertice vert = (Vertice)e.Data.GetData(typeof(Vertice));
                 e.Effect = DragDropEffects.Move;
-                // OnDragDrop(new DragEventArgs(e.Data,e.KeyState,e.X,e.Y,e.AllowedEffect,e.Effect));
             }
             else
                 e.Effect = DragDropEffects.None;
@@ -57,10 +50,10 @@ namespace Dijkstra
 
             if (e.Data.GetDataPresent(typeof(Vertice)))
             {
-                Vertice l3 = (Vertice)e.Data.GetData(typeof(Vertice));
-                l3.Location = new Point(0, 0);
+                Vertice v = (Vertice)e.Data.GetData(typeof(Vertice));
+                v.Location = new Point(0, 0);
 
-                this.Controls.Add(l3);
+                this.Controls.Add(v);
             }
 
         }

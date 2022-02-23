@@ -11,7 +11,6 @@ namespace Dijkstra
         public int Peso { get; set; }
         public Arco(Vertice destinazione, int peso)
         {
-            //Sorgente = sorgente;
             Destinazione = destinazione;
             Peso = peso;
         }
