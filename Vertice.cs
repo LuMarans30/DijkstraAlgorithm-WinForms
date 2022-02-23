@@ -86,7 +86,7 @@ namespace Dijkstra
             // lblPeso
             // 
             //this.lblPeso.BackColor = System.Drawing.Color.Transparent;
-            this.lblPeso.Font = new Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPeso.Font = new Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPeso.Location = new Point(40, 0);
             this.lblPeso.Margin = new Padding(0);
             this.lblPeso.Name = "lblPeso";
@@ -141,6 +141,17 @@ namespace Dijkstra
         {
             OnClick(e);
         }
+
+        /*public void Aggiungi(Arco arco)
+        {
+            Console.WriteLine("AGGIUNGI");
+            int i = 0;
+            for (; i < listaAdiacenti.Count && arco.Peso >= listaAdiacenti[i].Peso; i++);
+            listaAdiacenti.Insert(i, arco);
+            Arco arco2 = new Arco(this, this.Peso);
+            for (i=0; i < arco2.Destinazione.listaAdiacenti.Count && arco2.Peso >= arco2.Destinazione.listaAdiacenti[i].Peso; i++) ;
+            arco2.Destinazione.listaAdiacenti.Insert(i, arco2);
+        }*/
 
         public Arco Estrai()
         {
