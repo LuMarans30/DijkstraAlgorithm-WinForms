@@ -47,6 +47,9 @@
     <ApplicationIcon>appicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MaterialSkin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\MaterialSkin.Updated.0.2.2\lib\MaterialSkin.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -138,6 +141,7 @@
       <DependentUpon>VsGrafi.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="packages.config" />
     <None Include="Properties\DataSources\Arco.datasource" />
     <None Include="Properties\DataSources\Dijkstra.Properties.Resources.datasource" />
     <None Include="Properties\DataSources\Dijkstra.Properties.Settings.datasource" />

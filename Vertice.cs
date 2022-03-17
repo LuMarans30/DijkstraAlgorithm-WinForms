@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Dijkstra
 {
-    class Vertice : FlowLayoutPanel, IComparable<Vertice>
+    public class Vertice : FlowLayoutPanel, IComparable<Vertice>
     {
 
         public Label lblEtichetta = new Label();
@@ -50,8 +50,7 @@ namespace Dijkstra
         public Vertice(string nome)
         {
             Predecessore = null;
-            this.Peso = int.MaxValue;
-            //this.lblPeso.Text = INFINITY;
+            this.Peso = int.MaxValue-100000;
             this.nome = nome;
             this.Visitato = false;
             listaAdiacenti = new List<Arco>();

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Dijkstra
 {
-    class Arco
+    public class Arco
     {
         public Vertice Destinazione { get; set; }
         public int Peso { get; set; }

@@ -8,10 +8,8 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace Dijkstra
 {
-    class Grafo : Panel
+    public class Grafo : Panel
     {
-        //public List<Vertice> vertici;
-        //public List<Vertice> frontiera;
         public List<Vertice> nonVisitati;
         public List<Vertice> visitati;
         public Vertice Attivo { get; set; }
@@ -19,29 +17,26 @@ namespace Dijkstra
         public Grafo()
         {
             nonVisitati = new List<Vertice>();
-            //frontiera = new List<Vertice>();
             visitati = new List<Vertice>();
-            //vertici = new List<Vertice>();
             this.BorderStyle = BorderStyle.Fixed3D;
             this.BackColor = Color.White;
-            this.Size = new System.Drawing.Size(1500, 900);
-
-            //this.RowCount = 4;
-            //this.ColumnCount = 4;
-            //this.Anchor = AnchorStyles.None;
-            //this.Padding = new System.Windows.Forms.Padding(50);
-            // this.GrowStyle = TableLayoutPanelGrowStyle.FixedSize;
-            // this.Margin = new System.Windows.Forms.Padding(50);
+            this.Size = new Size(1500, 900);
             for (int i = 0; i < 15; i++)
-            for (int j = 0; j < 25; j++)
-            {
-                Postazione p = new Postazione(i, j);
+                for (int j = 0; j < 25; j++)
+                {
+                    Postazione p = new Postazione(i, j);
 
-                p.Location = new Point(j * 60, i * 60);
-                //    p.ControlAdded += new ControlEventHandler(p_ControlAdded);
+                    p.Location = new Point(j * 60, i * 60);
 
-                this.Controls.Add(p);
-            }
+                    this.Controls.Add(p);
+                }
+        }
+
+        public Grafo(Grafo grafo)
+        {
+            this.nonVisitati = new List<Vertice>(grafo.nonVisitati);
+            this.visitati = new List<Vertice>(grafo.visitati);
+            this.Attivo = grafo.Attivo;
         }
 
         public void AggiungiVertice(Vertice v)
@@ -57,28 +52,22 @@ namespace Dijkstra
 
         }
 
-        public void Visita()
-        {
-            Attivo = visitati.ElementAt(0);
-            if (!Attivo.Visitato)
-            {
-                Attivo.Visitato = true;
-
-                visitati.Add(Attivo);
-            }
-
-            visitati.RemoveAt(0);
-        }
-
         public void Relax(Arco arco)
         {
+            //  Attivo = s; 
+            //  d = arco.destinazione
+            //  sd è l'arco da s a d
+            /*  if (d.peso > s.peso + sd.peso){
+                    d.peso = s.peso + sd.peso;
+                    d.predecessore = s;
+                }
+            */
             if (!arco.Destinazione.Visitato && arco.Destinazione.Peso > Attivo.Peso + arco.Peso)
             {
                 Console.WriteLine("Relax");
                 arco.Destinazione.Peso = Attivo.Peso + arco.Peso;
                 arco.Destinazione.Predecessore = Attivo;
             }
-
         }
         
         public Vertice DaNome(string nome)
@@ -88,19 +77,6 @@ namespace Dijkstra
                         select vertice;
             return query.First();
         }
-        
-
-    /*  public void InizializzaSorgenteSingola(Vertice v)
-      {
-          v.Peso = 0;
-          SpostaVisitati(v);
-      }
-
-      public void AggiungiNodo(Vertice v)
-      {
-          vertici.Add(v);
-          Controls.Add(v);
-      }*/
 
         protected override void OnPaint(PaintEventArgs e)
         {

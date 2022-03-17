@@ -34,40 +34,47 @@
             this.visualizzaGrafiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.materialContextMenuStrip1 = new MaterialSkin.Controls.MaterialContextMenuStrip();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.Control;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.percorsoMinimoToolStripMenuItem,
             this.visualizzaGrafiToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 2, 0, 20);
-            this.menuStrip1.Size = new System.Drawing.Size(1186, 41);
+            this.menuStrip1.Size = new System.Drawing.Size(877, 41);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // percorsoMinimoToolStripMenuItem
             // 
+            this.percorsoMinimoToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control;
             this.percorsoMinimoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.sorgenteToolStripMenuItem});
+            this.percorsoMinimoToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.percorsoMinimoToolStripMenuItem.Name = "percorsoMinimoToolStripMenuItem";
-            this.percorsoMinimoToolStripMenuItem.Size = new System.Drawing.Size(110, 20);
+            this.percorsoMinimoToolStripMenuItem.Size = new System.Drawing.Size(110, 19);
             this.percorsoMinimoToolStripMenuItem.Text = "Percorso Minimo";
             // 
             // sorgenteToolStripMenuItem
             // 
             this.sorgenteToolStripMenuItem.Name = "sorgenteToolStripMenuItem";
-            this.sorgenteToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.sorgenteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.sorgenteToolStripMenuItem.Text = "Imposta Sorgente";
             this.sorgenteToolStripMenuItem.Click += new System.EventHandler(this.sorgenteToolStripMenuItem_Click);
             // 
             // visualizzaGrafiToolStripMenuItem
             // 
+            this.visualizzaGrafiToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control;
+            this.visualizzaGrafiToolStripMenuItem.Enabled = false;
+            this.visualizzaGrafiToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.visualizzaGrafiToolStripMenuItem.Name = "visualizzaGrafiToolStripMenuItem";
-            this.visualizzaGrafiToolStripMenuItem.Size = new System.Drawing.Size(96, 20);
+            this.visualizzaGrafiToolStripMenuItem.Size = new System.Drawing.Size(96, 19);
             this.visualizzaGrafiToolStripMenuItem.Text = "Visualizza grafi";
             this.visualizzaGrafiToolStripMenuItem.Click += new System.EventHandler(this.visualizzaGrafiToolStripMenuItem_Click);
             // 
@@ -90,13 +97,22 @@
             this.label1.Size = new System.Drawing.Size(0, 13);
             this.label1.TabIndex = 4;
             // 
+            // materialContextMenuStrip1
+            // 
+            this.materialContextMenuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.materialContextMenuStrip1.Depth = 0;
+            this.materialContextMenuStrip1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialContextMenuStrip1.Name = "materialContextMenuStrip1";
+            this.materialContextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(1186, 591);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(877, 570);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
@@ -119,6 +135,7 @@
         private System.Windows.Forms.ToolStripMenuItem sorgenteToolStripMenuItem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripMenuItem visualizzaGrafiToolStripMenuItem;
+        private MaterialSkin.Controls.MaterialContextMenuStrip materialContextMenuStrip1;
     }
 }
 
