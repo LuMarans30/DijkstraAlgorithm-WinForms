@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 using System.Resources;
 
@@ -32,6 +31,48 @@ namespace Dijkstra
             Controls.Add(g);
 
         }
+
+        /*private void nuovoArcoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Nuovo Arco
+            NuovoArco fmArco = new NuovoArco();
+            // listaNodi = new List<Vertice>();
+            foreach (Control c in g.Controls)
+            {
+
+                if (c is Postazione && c.Controls.Count > 0)
+                {
+                    Vertice vx = (Vertice)c.Controls[0];
+                    Postazione px = (Postazione)c;
+                    vx.Posx = px.i * 60;
+                    vx.Posy = px.j * 60;
+                    fmArco.cmbPartenza.Items.Add(vx.Nome);
+                    fmArco.cmbArrivo.Items.Add(vx.Nome);
+                    // listaNodi.Add(vx);
+                }
+            }
+            fmArco.cmbPartenza.Text = fmArco.cmbPartenza.Items[0].ToString();
+            fmArco.cmbArrivo.Text = fmArco.cmbArrivo.Items[0].ToString();
+            if (fmArco.ShowDialog() == DialogResult.OK)
+            {
+
+                //for (int i = 0; i < g.nonVisitati.Count; i++)
+                //{
+                //    if (listaNodi[i].Nome == fmArco.cmbArrivo.Text)
+                //        dest = listaNodi[i];
+                //    if (listaNodi[i].Nome == fmArco.cmbPartenza.Text)
+                //        sorg = listaNodi[i];
+
+                //}
+                dest = g.DaNome(fmArco.cmbArrivo.Text);
+                sorg = g.DaNome(fmArco.cmbPartenza.Text);
+                sorg.listaAdiacenti.Add(new Arco(dest, Convert.ToInt32(fmArco.txtPeso.Text)));
+
+                g.Refresh();
+
+            }
+
+        }*/
 
         protected override void OnPaint(PaintEventArgs e)
         {
@@ -178,6 +219,8 @@ namespace Dijkstra
             {
 
             }
+
+            //g.Refresh();
         }
     }
 }

@@ -29,7 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            this.cmbDestinazione = new System.Windows.Forms.ComboBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.btnVisualizza = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.dataGrafo = new System.Windows.Forms.DataGridView();
             this.Column0 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -39,6 +42,27 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGrafo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // cmbDestinazione
+            // 
+            this.cmbDestinazione.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbDestinazione.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.cmbDestinazione.FormattingEnabled = true;
+            this.cmbDestinazione.Location = new System.Drawing.Point(313, 68);
+            this.cmbDestinazione.Name = "cmbDestinazione";
+            this.cmbDestinazione.Size = new System.Drawing.Size(151, 32);
+            this.cmbDestinazione.Sorted = true;
+            this.cmbDestinazione.TabIndex = 15;
+            // 
+            // button2
+            // 
+            this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.button2.Location = new System.Drawing.Point(209, 152);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(98, 39);
+            this.button2.TabIndex = 14;
+            this.button2.Text = "Annulla";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // btnVisualizza
             // 
@@ -50,9 +74,18 @@
             this.btnVisualizza.Text = "OK";
             this.btnVisualizza.UseVisualStyleBackColor = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(48, 68);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(253, 24);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Imposta il nodo destinazione:";
+            // 
             // dataGrafo
             // 
-            this.dataGrafo.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGrafo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGrafo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column0,
@@ -108,9 +141,12 @@
             this.Controls.Add(this.rBtnBellmanFord);
             this.Controls.Add(this.rBtnDijkstra);
             this.Controls.Add(this.dataGrafo);
+            this.Controls.Add(this.cmbDestinazione);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.btnVisualizza);
+            this.Controls.Add(this.label1);
             this.Name = "VsGrafi";
-            this.Text = "Percorsi minimi";
+            this.Text = "VsGrafi";
             ((System.ComponentModel.ISupportInitialize)(this.dataGrafo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -119,7 +155,11 @@
         }
 
         #endregion
+
+        public System.Windows.Forms.ComboBox cmbDestinazione;
+        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnVisualizza;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.BindingSource form1BindingSource;
         public System.Windows.Forms.DataGridView dataGrafo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column0;

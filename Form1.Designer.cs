@@ -58,7 +58,7 @@
             this.sorgenteToolStripMenuItem});
             this.percorsoMinimoToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.percorsoMinimoToolStripMenuItem.Name = "percorsoMinimoToolStripMenuItem";
-            this.percorsoMinimoToolStripMenuItem.Size = new System.Drawing.Size(110, 19);
+            this.percorsoMinimoToolStripMenuItem.Size = new System.Drawing.Size(110, 20);
             this.percorsoMinimoToolStripMenuItem.Text = "Percorso Minimo";
             // 
             // sorgenteToolStripMenuItem
@@ -74,7 +74,7 @@
             this.visualizzaGrafiToolStripMenuItem.Enabled = false;
             this.visualizzaGrafiToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.visualizzaGrafiToolStripMenuItem.Name = "visualizzaGrafiToolStripMenuItem";
-            this.visualizzaGrafiToolStripMenuItem.Size = new System.Drawing.Size(96, 19);
+            this.visualizzaGrafiToolStripMenuItem.Size = new System.Drawing.Size(96, 20);
             this.visualizzaGrafiToolStripMenuItem.Text = "Visualizza grafi";
             this.visualizzaGrafiToolStripMenuItem.Click += new System.EventHandler(this.visualizzaGrafiToolStripMenuItem_Click);
             // 

@@ -10,6 +10,8 @@ namespace Dijkstra
 {
     public class Grafo : Panel
     {
+        //public List<Vertice> vertici;
+        //public List<Vertice> frontiera;
         public List<Vertice> nonVisitati;
         public List<Vertice> visitati;
         public Vertice Attivo { get; set; }
@@ -17,7 +19,9 @@ namespace Dijkstra
         public Grafo()
         {
             nonVisitati = new List<Vertice>();
+            //frontiera = new List<Vertice>();
             visitati = new List<Vertice>();
+            //vertici = new List<Vertice>();
             this.BorderStyle = BorderStyle.Fixed3D;
             this.BackColor = Color.White;
             this.Size = new Size(1500, 900);
@@ -52,6 +56,19 @@ namespace Dijkstra
 
         }
 
+        public void Visita()
+        {
+            Attivo = visitati.ElementAt(0);
+            if (!Attivo.Visitato)
+            {
+                Attivo.Visitato = true;
+
+                visitati.Add(Attivo);
+            }
+
+            visitati.RemoveAt(0);
+        }
+
         public void Relax(Arco arco)
         {
             //  Attivo = s; 
@@ -77,6 +94,19 @@ namespace Dijkstra
                         select vertice;
             return query.First();
         }
+        
+
+    /*  public void InizializzaSorgenteSingola(Vertice v)
+      {
+          v.Peso = 0;
+          SpostaVisitati(v);
+      }
+
+      public void AggiungiNodo(Vertice v)
+      {
+          vertici.Add(v);
+          Controls.Add(v);
+      }*/
 
         protected override void OnPaint(PaintEventArgs e)
         {
