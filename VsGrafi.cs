@@ -23,15 +23,25 @@ namespace Dijkstra
             dataGrafo.Rows.Clear();
 
             if (rBtnDijkstra.Checked == true)
-                Form1.dijkstra();
-            else
-                Form1.bellmanFord();
-
-            Form1.vertici = Form1.g.nonVisitati.Concat(Form1.g.visitati).ToList();
-
-            foreach (Vertice v in Form1.g.visitati)
             {
-                string[] riga = { v.Nome, v.Peso.ToString() };
+                Form1.dijkstra();
+                Form1.vertici = Form1.g.nonVisitati.Concat(Form1.g.visitati).ToList();
+            }
+            else
+            {
+                Form1.bellmanFord();
+                Form1.vertici = Form1.bellManVertici;
+            }
+
+            //Form1.vertici = Form1.g.nonVisitati.Concat(Form1.g.visitati).ToList();
+
+            string[] riga = new string[3];
+
+            foreach (Vertice v in Form1.vertici)
+            {
+                riga[0] = v.Nome;
+                riga[1] = v.Peso.ToString();
+                riga[2] = v.Nome != "A" ? v.Predecessore.Nome : "";
                 dataGrafo.Rows.Add(riga);
             }
 

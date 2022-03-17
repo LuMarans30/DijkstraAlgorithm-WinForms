@@ -7,10 +7,12 @@ namespace Dijkstra
 {
     public class Arco
     {
+        public Vertice Sorgente { get; set; }   
         public Vertice Destinazione { get; set; }
         public int Peso { get; set; }
-        public Arco(Vertice destinazione, int peso)
+        public Arco(Vertice sorgente, Vertice destinazione, int peso)
         {
+            Sorgente = sorgente;
             Destinazione = destinazione;
             Peso = peso;
         }

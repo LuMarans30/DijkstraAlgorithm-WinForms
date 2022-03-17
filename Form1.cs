@@ -14,6 +14,7 @@ namespace Dijkstra
         private Vertice sorg = null;
         private int i = 0;
         public static List<Vertice> vertici = new List<Vertice>();
+        public static List<Vertice> bellManVertici = new List<Vertice>();
         private bool sorgFlag=false;
 
         public Form1()
@@ -31,48 +32,6 @@ namespace Dijkstra
             Controls.Add(g);
 
         }
-
-        /*private void nuovoArcoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //Nuovo Arco
-            NuovoArco fmArco = new NuovoArco();
-            // listaNodi = new List<Vertice>();
-            foreach (Control c in g.Controls)
-            {
-
-                if (c is Postazione && c.Controls.Count > 0)
-                {
-                    Vertice vx = (Vertice)c.Controls[0];
-                    Postazione px = (Postazione)c;
-                    vx.Posx = px.i * 60;
-                    vx.Posy = px.j * 60;
-                    fmArco.cmbPartenza.Items.Add(vx.Nome);
-                    fmArco.cmbArrivo.Items.Add(vx.Nome);
-                    // listaNodi.Add(vx);
-                }
-            }
-            fmArco.cmbPartenza.Text = fmArco.cmbPartenza.Items[0].ToString();
-            fmArco.cmbArrivo.Text = fmArco.cmbArrivo.Items[0].ToString();
-            if (fmArco.ShowDialog() == DialogResult.OK)
-            {
-
-                //for (int i = 0; i < g.nonVisitati.Count; i++)
-                //{
-                //    if (listaNodi[i].Nome == fmArco.cmbArrivo.Text)
-                //        dest = listaNodi[i];
-                //    if (listaNodi[i].Nome == fmArco.cmbPartenza.Text)
-                //        sorg = listaNodi[i];
-
-                //}
-                dest = g.DaNome(fmArco.cmbArrivo.Text);
-                sorg = g.DaNome(fmArco.cmbPartenza.Text);
-                sorg.listaAdiacenti.Add(new Arco(dest, Convert.ToInt32(fmArco.txtPeso.Text)));
-
-                g.Refresh();
-
-            }
-
-        }*/
 
         protected override void OnPaint(PaintEventArgs e)
         {
@@ -102,37 +61,24 @@ namespace Dijkstra
 
         public static void bellmanFord()
         {
-            foreach (Vertice vertice in g.nonVisitati)
-            { 
-                g.Attivo = vertice;
-
-                foreach (Arco arco in vertice.listaAdiacenti)
-                {
-                    g.Relax(arco);
-                }
-            }
-
-            g.visitati = g.nonVisitati;
-
-            try
+            List<Vertice> vertici = new List<Vertice>();
+            vertici.Add(g.Attivo);
+            vertici.AddRange(g.nonVisitati);
+            bool flag = true;
+            while (flag)
             {
-                foreach (Vertice v in g.visitati)
+                flag = false;
+                foreach (Vertice vertice in vertici)
                 {
-                    g.Attivo = v;
-
-                    foreach (Arco a in v.listaAdiacenti)
+                    foreach (Arco arco in vertice.listaAdiacenti)
                     {
-                        if (g.Attivo.Peso + a.Peso < a.Destinazione.Peso)
-                        {
-                            throw new Exception("Rilevati cicli negativi");
-                        }
+                        if(g.Aggiornamento(arco))
+                            flag = true;
                     }
                 }
-
-            }catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
             }
+
+            bellManVertici = vertici;
 
         }
 
@@ -168,7 +114,6 @@ namespace Dijkstra
         private void panel1_MouseHover(object sender, EventArgs e)
         {
             NuovoVertice nv = new NuovoVertice();
-            //Vertice v = new Vertice(char.ConvertFromUtf32(i + 65).ToString());
             Vertice v = new Vertice(char.ConvertFromUtf32(i + 65).ToString());
             v.Click += V_Click;
             i++;
@@ -192,8 +137,8 @@ namespace Dijkstra
             }
             if (fmArco.ShowDialog()==DialogResult.OK)
             {
-                sorg.listaAdiacenti.Add(new Arco(dest, Convert.ToInt32(fmArco.txtPeso.Text)));
-                dest.listaAdiacenti.Add(new Arco(sorg, Convert.ToInt32(fmArco.txtPeso.Text)));
+                sorg.listaAdiacenti.Add(new Arco(sorg, dest, Convert.ToInt32(fmArco.txtPeso.Text)));
+                dest.listaAdiacenti.Add(new Arco(dest, sorg, Convert.ToInt32(fmArco.txtPeso.Text)));
                 g.Refresh();
             }
         }

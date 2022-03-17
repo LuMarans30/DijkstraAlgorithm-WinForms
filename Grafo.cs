@@ -71,22 +71,31 @@ namespace Dijkstra
 
         public void Relax(Arco arco)
         {
-            //  Attivo = s; 
-            //  d = arco.destinazione
-            //  sd è l'arco da s a d
-            /*  if (d.peso > s.peso + sd.peso){
-                    d.peso = s.peso + sd.peso;
-                    d.predecessore = s;
-                }
-            */
+
             if (!arco.Destinazione.Visitato && arco.Destinazione.Peso > Attivo.Peso + arco.Peso)
             {
                 Console.WriteLine("Relax");
                 arco.Destinazione.Peso = Attivo.Peso + arco.Peso;
                 arco.Destinazione.Predecessore = Attivo;
             }
+            
         }
+
+        public bool Aggiornamento(Arco arco)
+        {
         
+            if (arco.Destinazione.Peso > arco.Sorgente.Peso + arco.Peso)
+            {
+                Console.WriteLine("Relax");
+                arco.Destinazione.Peso = arco.Sorgente.Peso + arco.Peso;
+                arco.Destinazione.Predecessore = arco.Sorgente;
+                return true;
+            }
+
+            return false;
+
+        }
+
         public Vertice DaNome(string nome)
         {
              var query = from vertice in nonVisitati
