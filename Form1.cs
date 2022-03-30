@@ -38,19 +38,23 @@ namespace Dijkstra
 
         }
 
+        public static void routingGerarchico()
+        {
+            
+        }
+
         public static void dijkstra()
         {
+
             while (g.nonVisitati.Count > 0)
             {
                 Arco arco;
 
                 while ((arco = g.Attivo.Estrai()) != null)
-                {
-
+                {                   
                     g.Relax(arco);
-
                 }
-
+                
                 g.nonVisitati.Sort();
                 g.Attivo = g.nonVisitati[0];
                 g.SpostaVisitati(g.Attivo);
